@@ -19,6 +19,7 @@ public class MyTest {
 
     @Test
     public void setupandTest(){
+        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chrome-linux64/chrome");
         WebDriver driver = new ChromeDriver();
 
         driver.get("https://www.hyrtutorials.com/p/waits-demo.html");
