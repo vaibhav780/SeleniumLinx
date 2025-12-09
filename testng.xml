@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="/home/vm/IdeaProjects/SeleniumTest/src/test/java/MyTest.java">
+<suite name="All Test Suite" parallel="tests" thread-count="3">
+    <listeners>
+        <listener class-name="MyListner"></listener>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="Test1">
+    <parameter name="browser" value="firefox"/>
        <classes>
            <class name="MyTest"></class>
        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="Test2">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="MyTest"></class>
+        </classes>
     </test>
 </suite>

@@ -4,24 +4,36 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+@Listeners(MyListner.class)
 public class MyTest {
 
 
-    @Test
-    public void setupandTest(){
-        System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chrome-linux64/chrome");
-        WebDriver driver = new ChromeDriver();
-
+    @Parameters("browser")
+    @Test()
+    public void setupandTest(String browser){
+        CustLogger.Info(browser);
+        WebDriver driver = null;
+   //     System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chrome-linux64/chrome");
+        if (browser.equals("chrome")) {
+            //System.setProperty("webdriver.chrome.driver", "/usr/local/bin/chrome-linux64/chrome");
+            driver = new ChromeDriver();
+        }if (browser.equals("firefox")){
+          //  System.setProperty("webdriver.chrome.driver", "/usr/local/bin/geckodriver");
+            driver=new FirefoxDriver();
+        }
         driver.get("https://www.hyrtutorials.com/p/waits-demo.html");
         WebElement btn1= driver.findElement(By.id("btn1"));
         WebElement btn2 = driver.findElement(By.id("btn2"));
